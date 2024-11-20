@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+import { setCookie } from "nookies";
 import { prisma } from "../../../lib/prisma";
 
 export default async function handler(
@@ -20,7 +21,10 @@ export default async function handler(
 
   if (userExists) return res.status(400).json({ message: "Usuário já existe" });
 
+  //create user
   const user = await prisma.user.create({ data: { name, username } });
 
+  setCookie({ res }, "@ignitecall:userId", user.id, {});
+AULA 15!!!
   return res.status(201).json(user);
 }
