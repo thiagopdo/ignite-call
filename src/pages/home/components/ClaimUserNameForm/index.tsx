@@ -23,7 +23,7 @@ export function ClaimUsernameForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ClaimUsernameFormData>({
     resolver: zodResolver(claimUsernameFormSchema),
   });
@@ -40,12 +40,16 @@ export function ClaimUsernameForm() {
     <>
       <Form as="form" onSubmit={handleSubmit(handleClaimUsername)}>
         <TextInput
-          crossOrigin={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} size="sm"
+          crossOrigin={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+          size="sm"
           prefix="ignite.com/"
           placeholder="seu-usuário"
-          {...register("username")}        />
+          {...register("username")}
+        />
 
-        <Button size="sm" type="submit">
+        <Button size="sm" type="submit" disabled={isSubmitting}>
           Reservar
           <ArrowRight />
         </Button>
