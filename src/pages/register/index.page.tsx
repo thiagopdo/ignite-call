@@ -8,6 +8,7 @@ import { z } from "zod";
 
 import { Container, Form, FormError, Header } from "./styles";
 import { api } from "../../lib/axios";
+import { AxiosError } from "axios";
 
 const registerFormSchema = z.object({
   username: z
@@ -40,6 +41,13 @@ export default function Register() {
     }
   }, [router.query?.username, setValue]);
 
+  /**
+   * Handles the registration process by sending user data to the API.
+   *
+   * @param {RegisterFormData} data - The registration form data containing the user's name and username.
+   * @returns {Promise<void>} A promise that resolves when the registration is complete.
+   * @throws {AxiosError} If there is an error during the API request, an alert with the error message is shown.
+   */
   async function handleRegister(data: RegisterFormData) {
     try {
       await api.post("/users", {
@@ -47,6 +55,10 @@ export default function Register() {
         username: data.username,
       });
     } catch (error) {
+      if (error instanceof AxiosError && error?.response?.data?.message) {
+        alert(error.response.data.message);
+        return 
+      }
       console.log(error);
     }
   }
