@@ -8,7 +8,7 @@ import { ConnectBox, ConnectItem } from "./styles";
 export default function Register() {
   // async function handleRegister(data: RegisterFormData) {}
 
-  AULA 17!!!
+  AULA 19!!!
 
   return (
     <Container>
