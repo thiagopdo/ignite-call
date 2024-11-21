@@ -11,6 +11,8 @@ export default async function handler(
     return res.status(405).end();
   }
 
+  AULA 16!!!
+
   const { name, username } = req.body;
 
   const userExists = await prisma.user.findUnique({
