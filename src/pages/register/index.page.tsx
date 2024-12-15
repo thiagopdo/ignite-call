@@ -9,6 +9,7 @@ import { z } from "zod";
 
 import { api } from "../../lib/axios";
 import { Container, Form, FormError, Header } from "./styles";
+import { NextSeo } from "next-seo";
 
 const registerFormSchema = z.object({
   username: z
@@ -66,54 +67,61 @@ export default function Register() {
   }
 
   return (
-    <Container>
-      <Header>
-        <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
-        <Text>
-          Para começar a usar o Ignite Call, você precisa se registrar. Preencha
-          o formulário abaixo para criar sua conta.
-        </Text>
+    <>
+      <NextSeo
+        title="Descomplica Agendamento | Ignite Call"
+        description="Conecte seu calendário e permita que as pessoas marquem agendamento
+            no seu tempo livre."
+      />
+      <Container>
+        <Header>
+          <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
+          <Text>
+            Para começar a usar o Ignite Call, você precisa se registrar.
+            Preencha o formulário abaixo para criar sua conta.
+          </Text>
 
-        <MultiStep size={4} currentStep={1} />
-      </Header>
+          <MultiStep size={4} currentStep={1} />
+        </Header>
 
-      <Form as="form" onSubmit={handleSubmit(handleRegister)}>
-        <label>
-          <Text size="sm">Nome de usuário</Text>
-          <TextInput
-            crossOrigin={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-            prefix="ignite.com/"
-            placeholder="seu-usuário"
-            {...register("username")}
-          />
+        <Form as="form" onSubmit={handleSubmit(handleRegister)}>
+          <label>
+            <Text size="sm">Nome de usuário</Text>
+            <TextInput
+              crossOrigin={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+              prefix="ignite.com/"
+              placeholder="seu-usuário"
+              {...register("username")}
+            />
 
-          {errors.username && (
-            <FormError size="sm">{errors.username.message}</FormError>
-          )}
-        </label>
+            {errors.username && (
+              <FormError size="sm">{errors.username.message}</FormError>
+            )}
+          </label>
 
-        <label>
-          <Text size="sm">Nome completo</Text>
-          <TextInput
-            crossOrigin={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-            placeholder="seu nome"
-            {...register("name")}
-          />
+          <label>
+            <Text size="sm">Nome completo</Text>
+            <TextInput
+              crossOrigin={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
+              placeholder="seu nome"
+              {...register("name")}
+            />
 
-          {errors.name && (
-            <FormError size="sm">{errors.name.message}</FormError>
-          )}
-        </label>
+            {errors.name && (
+              <FormError size="sm">{errors.name.message}</FormError>
+            )}
+          </label>
 
-        <Button type="submit" disabled={isSubmitting}>
-          Próximo
-          <ArrowRight />
-        </Button>
-      </Form>
-    </Container>
+          <Button type="submit" disabled={isSubmitting}>
+            Próximo
+            <ArrowRight />
+          </Button>
+        </Form>
+      </Container>
+    </>
   );
 }
