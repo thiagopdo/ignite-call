@@ -1,34 +1,146 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Google Calendar Scheduler
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-12.3.1-blue.svg)
+![Prisma](https://img.shields.io/badge/Prisma-5.0.0-blueviolet.svg)
+![SQLite](https://img.shields.io/badge/SQLite-3.39.0-green.svg)
+![Google API](https://img.shields.io/badge/Google%20API-Calendar%20%26%20OAuth-red.svg)
 
-First, run the development server:
+## Descrição
+
+Este projeto é uma aplicação de agendamento de eventos construída com **Next.js**. Ele permite que os usuários sincronizem seus calendários com o **Google Calendar** para:
+
+- Verificar datas disponíveis.
+- Agendar compromissos.
+- Sincronizar eventos automaticamente com seus calendários.
+
+A aplicação utiliza o **Prisma** como ORM para manipulação do banco de dados, utilizando **SQLite** como armazenamento local.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Next.js**: Framework React para aplicações web.
+- **Prisma**: ORM para manipulação de dados.
+- **SQLite**: Banco de dados leve e eficiente.
+- **Google Calendar API**: Integração para criar e gerenciar eventos.
+- **Google OAuth 2.0**: Autenticação segura dos usuários.
+
+---
+
+## Funcionalidades
+
+- **Autenticação com o Google**: Conecte-se utilizando sua conta Google para gerenciar seus eventos.
+- **Sincronização em tempo real**: Agendamentos são automaticamente sincronizados com o Google Calendar.
+- **Painel de Administração**: Verificação e gerenciamento de eventos agendados.
+- **Banco de Dados Local**: Dados armazenados utilizando SQLite para maior simplicidade.
+
+---
+
+## Requisitos
+
+Antes de iniciar, certifique-se de que possui:
+
+- Node.js (v16 ou superior)
+- Yarn ou npm
+- Conta no Google Cloud Platform para configurar as APIs
+
+---
+
+## Como Rodar o Projeto
+
+### 1. Clone o Repositório
+
+```bash
+https://github.com/seu-usuario/nome-do-repositorio.git
+cd nome-do-repositorio
+```
+
+### 2. Instale as Dependências
+
+Utilizando **npm** ou **yarn**:
+
+```bash
+npm install
+# ou
+yarn install
+```
+
+### 3. Configure as Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+
+```env
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+NEXTAUTH_SECRET=your-nextauth-secret
+DATABASE_URL=file:./dev.db
+```
+
+### 4. Configure o Banco de Dados
+
+Rode as migrações para configurar o banco de dados SQLite:
+
+```bash
+npx prisma migrate dev
+```
+
+### 5. Inicie o Servidor de Desenvolvimento
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse a aplicação em [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Configuração do Google Cloud
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Acesse o [Google Cloud Console](https://console.cloud.google.com/).
+2. Crie um novo projeto.
+3. Habilite as APIs "Google Calendar API" e "Google OAuth 2.0".
+4. Configure as credenciais e obtenha o **Client ID** e **Client Secret**.
+5. Adicione a URL de redirecionamento: `http://localhost:3000/api/auth/callback/google`.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Estrutura do Projeto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```plaintext
+/
+|-- prisma/          # Esquema e migrações do Prisma
+|-- pages/           # Páginas e rotas da aplicação
+|-- components/      # Componentes reutilizáveis
+|-- lib/             # Configurações e integrações externas
+|-- styles/          # Estilos globais e modulares
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Contribuição
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Fique à vontade para contribuir com melhorias ou correções! Para isso:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Fork o repositório.
+2. Crie uma nova branch para sua feature/correção.
+3. Envie um Pull Request descrevendo as alterações realizadas.
+
+---
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+---
+
+## Contato
+
+Se tiver dúvidas ou sugestões, entre em contato:
+
+- Email: [seu-email@example.com](mailto:seu-email@example.com)
+- LinkedIn: [Seu Nome](https://linkedin.com/in/seu-perfil)
+
+---
+
